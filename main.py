@@ -1,9 +1,12 @@
+#! /usr/bin/python3
+
 import tkinter
 import gameObj
 import gameAI
 
 def createGUI(width, height):
     tk = tkinter.Tk()
+    tk.resizable(0, 0)
     canvas = tkinter.Canvas(tk, width=width, height=height)
     canvas.pack()
     return (tk, canvas)
@@ -27,4 +30,5 @@ if __name__ == "__main__":
     judge = gameAI.Judgment([bat1], [ba1])
     #ba1.draw()
     test(bat1, ba1, judge, canvas)
+    
     tkinter.mainloop()
