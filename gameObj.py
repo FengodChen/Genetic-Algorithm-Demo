@@ -14,7 +14,7 @@ class Board:
         self.reboundSurface = reboundSurface
 
         self.drawFlag = False
-        self.lose = False
+        self.lose = 0
         self.touchBall = False
 
     def turnLeft(self, distance=1):
@@ -94,11 +94,13 @@ class Board:
             return (ball.y - ball.r)- (self.y + self.height)
 
 class Ball:
-    def __init__(self, x, y, r, canvas, tag, moveDirection = 0.0, speed = 1):
+    def __init__(self, x, y, r, canvas, cWidth, cHeight, tag, moveDirection = 0.0, speed = 1):
         self.x = x
         self.y = y
         self.r = r
         self.canvas = canvas
+        self.cWidth = cWidth
+        self.cHeight = cHeight
         self.tag = tag
         self.drawFlag = False
         self.moveDirection = moveDirection
@@ -116,3 +118,11 @@ class Ball:
     def move(self):
         self.x += self.speed * math.cos(self.moveDirection)
         self.y += self.speed * math.sin(self.moveDirection)
+        if (self.x < 0):
+            self.x += self.cWidth
+        elif (self.x > self.cWidth):
+            self.x -= self.cWidth
+        if (self.y < 0):
+            self.y += self.cHeight
+        elif (self.y > self.cHeight):
+            self.y -= self.cHeight
